@@ -6,7 +6,10 @@
   "scripts": {
     "start": "nodemon src/index.js localhost 8080"
   },
-  "dependencies": {},
+  "dependencies": {
+    "bootstrap-vue": "2.0.4",
+    "pug": "2.0.4"
+  },
   "devDependencies": {
     "nodemon": "1.18.4"
   },
