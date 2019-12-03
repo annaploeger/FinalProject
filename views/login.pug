@@ -2,7 +2,18 @@ extends layout
 
 block content
 
-  h2 Login form
+  h2 Login
+  body
+    nav.navbar.navbar-expand-lg.navbar-light.bg-light
+      button.navbar-toggler(type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation")
+        span.navbar-toggler-icon
+      #navbarNavAltMarkup.collapse.navbar-collapse
+        .navbar-nav
+          a.nav-item.nav-link.active(href="index")
+            | Feed 
+            span.sr-only (current)
+
+  
   form(method='POST' action='/posts/create')
             div.form-group
               label(for='username') Username:
@@ -10,4 +21,4 @@ block content
             div.form-group
               label(for='password') Password:
               input#content.form-control(type='password' name='password')
-            button.btn.btn-primary(type='submit') Login
+            <button type="button" class="btn btn-light">Login</button>

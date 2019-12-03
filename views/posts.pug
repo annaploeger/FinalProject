@@ -2,20 +2,33 @@ extends layout
 
 block content
   h1= title
+  body
+    nav.navbar.navbar-expand-lg.navbar-light.bg-light
+      button.navbar-toggler(type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation")
+        span.navbar-toggler-icon
+      #navbarNavAltMarkup.collapse.navbar-collapse
+        .navbar-nav
+          a.nav-item.nav-link.active(href="index")
+            | Feed 
+            span.sr-only (current)
+          a.nav-item.nav-link(href="posts") Posts
+          a.nav-item.nav-link(href="profile") Profile
 
+    .input-group.mb-3
+      .input-group-prepend
+        span.input-group-text ...
+      input.form-control(type="text" placeholder="Subject" aria-label="Subject")
+      .input-group-append
+    .input-group
+      .input-group-prepend
+        span.input-group-text Your Post
+      textarea.form-control(placeholder="..." aria-label="Post")
+      button.btn.btn-light(type="button") Submit Post
+
+      
   ul
   each post in post_list
     li #{post.author}: #{post.content}
 
   else
-    li There are no posts yet.
-
-  h2 Submit New Post
-  form(method='POST' action='/posts/create')
-            div.form-group
-              label(for='name') Name:
-              input#name.form-control(type='text', placeholder='Your name' name='author')
-            div.form-group
-              label(for='content') Post text:
-              input#content.form-control(type='text' name='content')
-            button.btn.btn-primary(type='submit') Submit new post
+    p There are no posts yet.
