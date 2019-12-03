@@ -9,3 +9,13 @@ block content
 
   else
     li There are no posts yet.
+
+  h2 Submit New Post
+  form(method='POST' action='/posts/create')
+            div.form-group
+              label(for='name') Name:
+              input#name.form-control(type='text', placeholder='Your name' name='author')
+            div.form-group
+              label(for='content') Post text:
+              input#content.form-control(type='text' name='content')
+            button.btn.btn-primary(type='submit') Submit new post
