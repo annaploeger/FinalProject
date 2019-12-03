@@ -1,5 +1,30 @@
 extends layout
 
 block content
+  br
   h1= title
-  p Welcome to #{title}
+  p Welcome to #{title}.
+
+  body
+  .mx-auto(style="width: 100%;")
+    nav.navbar.navbar-expand-lg.navbar-light.bg-light
+      button.navbar-toggler(type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation")
+        span.navbar-toggler-icon
+      #navbarNavAltMarkup.collapse.navbar-collapse
+        .navbar-nav
+          a.nav-item.nav-link.active(href="/")
+            | Feed 
+            span.sr-only (current)
+          a.nav-item.nav-link(href="posts") Posts
+          a.nav-item.nav-link(href="profile") Profile
+          a.nav-item.nav-link(href="register") Register
+          a.nav-item.nav-link(href="login") Login
+          a.nav-item.nav-link(href="logout") Logout
+    br
+  .media.position-relative
+      img.mr-3(src="..." alt="...")
+      .media-body
+        h5.mt-0 First Post
+        p
+          | Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+        a.stretched-link(href="#") See the author

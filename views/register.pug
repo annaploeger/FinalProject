@@ -1,8 +1,26 @@
 extends layout
 
 block content
+  br
+  h2 Register here.
+  p Please sign up if you don't have an account.
+  .mx-auto(style="width: 100%;")
+    nav.navbar.navbar-expand-lg.navbar-light.bg-light
+      button.navbar-toggler(type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation")
+        span.navbar-toggler-icon
+      #navbarNavAltMarkup.collapse.navbar-collapse
+        .navbar-nav
+          a.nav-item.nav-link.active(href="/")
+            | Feed 
+            span.sr-only (current)
+          a.nav-item.nav-link(href="posts") Posts
+          a.nav-item.nav-link(href="profile") Profile
+          a.nav-item.nav-link(href="register") Register
+          a.nav-item.nav-link(href="login") Login
+          a.nav-item.nav-link(href="logout") Logout
 
-  h2 Register Here
+  br
+  
   form(method='POST' action='/posts/create')
             div.form-group
               label(for='username') Username:
@@ -12,5 +30,8 @@ block content
               input#name.form-control(type='text', placeholder='Your E-Mail' name='author')
             div.form-group
               label(for='password') Password:
-              input#content.form-control(type='password' name='password')
+              input#content.form-control(type='password' placeholder="Password" name='password')
+            div.form-group
+              label(for='password') Repeat Password:
+              input#content.form-control(type='password' placeholder="Repeat password" name='password')
             button.btn.btn-light(type="button") Sign Up
