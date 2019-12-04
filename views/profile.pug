@@ -8,19 +8,31 @@ block content
   body
     .mx-auto(style="width: 100%;")
     nav.navbar.navbar-expand-lg.navbar-light.bg-light
-      button.navbar-toggler(type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation")
+      a.navbar-brand(href="#") Hello #username
+      button.navbar-toggler(type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation")
         span.navbar-toggler-icon
-      #navbarNavAltMarkup.collapse.navbar-collapse
-        .navbar-nav
-          a.nav-item.nav-link.active(href="/")
-            | Feed 
-            span.sr-only (current)
-          a.nav-item.nav-link(href="posts") Posts
-          a.nav-item.nav-link(href="profile") Profile
-          a.nav-item.nav-link(href="register") Register
-          a.nav-item.nav-link(href="login") Login
-          a.nav-item.nav-link(href="logout") Logout
+      #navbarText.collapse.navbar-collapse
+        ul.navbar-nav.mr-auto
+          li.nav-item
+            a.nav-link(href="/") Feed
+          li.nav-item
+            a.nav-link(href="posts") Posts
+          li.nav-item
+            a.nav-link.active(href="profile") Profile
+              span.sr-only (current)
+
+        ul.nav.justify-content-end
+          li.nav-item
+            a.nav-link(href="login") Login
+          li.nav-item
+            a.nav-link(href="register") Register
+          li.nav-item
+            a.nav-link(href="logout") Logout
     br
-    p Username
-    p Birthday
-    p Member since
+    .card(style="width: 40rem;")
+      .card-header
+        | Your information
+      ul.list-group.list-group-flush
+        li.list-group-item Username
+        li.list-group-item Birthday
+        li.list-group-item Member since

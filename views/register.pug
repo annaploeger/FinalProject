@@ -10,28 +10,26 @@ block content
         span.navbar-toggler-icon
       #navbarNavAltMarkup.collapse.navbar-collapse
         .navbar-nav
-          a.nav-item.nav-link.active(href="/")
-            | Feed 
+          a.nav-item.nav-link.active(href="register")
+            | Register 
             span.sr-only (current)
-          a.nav-item.nav-link(href="posts") Posts
-          a.nav-item.nav-link(href="profile") Profile
-          a.nav-item.nav-link(href="register") Register
           a.nav-item.nav-link(href="login") Login
           a.nav-item.nav-link(href="logout") Logout
-
-  br
   
-  form(method='POST' action='/posts/create')
-            div.form-group
-              label(for='username') Username:
-              input#name.form-control(type='text', placeholder='Your Username' name='author')
-            div.form-group
-              label(for='email') E-Mail:
-              input#name.form-control(type='text', placeholder='Your E-Mail' name='author')
-            div.form-group
-              label(for='password') Password:
-              input#content.form-control(type='password' placeholder="Password" name='password')
-            div.form-group
-              label(for='password') Repeat Password:
-              input#content.form-control(type='password' placeholder="Repeat password" name='password')
-            button.btn.btn-light(type="button") Sign Up
+  form
+    .form-group.row
+      label.col-sm-2.col-form-label(for="inputUsername") Create a username
+      .col-sm-10
+        input#inputPassword.form-control(type="username" placeholder='Your Username')
+    .form-group.row
+      label.col-sm-2.col-form-label(for="inputEmail") E-Mail
+      .col-sm-10
+        input#inputPassword.form-control(type="password" placeholder='@')
+    .form-group.row
+      label.col-sm-2.col-form-label(for="inputPassword") Password
+      .col-sm-10
+        input#inputPassword.form-control(type="password" placeholder='*******')
+    .form-group.row
+      label.col-sm-2.col-form-label(for="inputPassword") Repeat Password
+      .col-sm-10
+        input#inputPassword.form-control(type="password" placeholder='*******')
