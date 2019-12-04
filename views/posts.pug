@@ -2,8 +2,11 @@ extends layout
 
 block content
   br
-  h1 Your posts.
-  p Create your own post or have a look at your recent ones.
+  .container-fluid
+        .row
+          .col-sm
+            h1 Your posts.
+            p Create your own post or have a look at your recent ones.
   body
     .mx-auto(style="width: 100%;")
     nav.navbar.navbar-expand-lg.navbar-light.bg-light
@@ -28,23 +31,27 @@ block content
           li.nav-item
             a.nav-link(href="logout") Logout
     br  
-    .input-group.mb-3
-      .input-group-prepend
-        span.input-group-text ...
-      input.form-control(type="text" placeholder="Subject" aria-label="Subject")
-      .input-group-append
-    .input-group
-      .input-group-prepend
-        span.input-group-text Your Post
-      textarea.form-control(placeholder="..." aria-label="Post")
-      br
-      button.btn.btn-light(type="button") Submit Post
-    br
-  h2 Your recent posts.
-      
-  ul
-  each post in post_list
-    li #{post.author}: #{post.content}
-
-  else
-    p There are no posts yet.
+  
+    .container-fluid
+        .row
+          .col-sm
+            form
+              .form-group
+                label(for="exampleFormControlInput1") Headline
+                input#exampleFormControlInput1.form-control(type="text", placeholder="What is your main topic?")
+              .form-group
+                  label(for="exampleFormControlInput1") Keywords
+                  input#exampleFormControlInput1.form-control(type="text", placeholder="###")
+              .form-group
+                label(for="exampleFormControlTextarea1") Post
+                textarea#exampleFormControlTextarea1.form-control(rows="3")
+              
+            br
+        .row
+          .col-sm
+           h2 Your recent posts.
+            ul
+            each post in post_list
+              li #{post.author}: #{post.content}
+            else
+              h6 There are no posts yet.

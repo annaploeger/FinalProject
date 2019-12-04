@@ -2,8 +2,11 @@ extends layout
 
 block content
   br
-  h2 Login.
-  p Please login to see your feed.
+  .container-fluid
+        .row
+          .col-sm
+            h2 Login.
+            p Please login to see your feed.
   body
     .mx-auto(style="width: 100%;")
     nav.navbar.navbar-expand-lg.navbar-light.bg-light
@@ -17,16 +20,18 @@ block content
           a.nav-item.nav-link(href="logout") Logout
 
     br
-  
-  form
-    .form-group.row
-      label.col-sm-2.col-form-label(for="inputUsername") Username
-      .col-sm-10
-        input#inputPassword.form-control(type="username" placeholder='Your Username')
-    .form-group.row
-      label.col-sm-2.col-form-label(for="inputPassword") Password
-      .col-sm-10
-        input#inputPassword.form-control(type="password" placeholder='*******')
-    .form-group.row
-      .col-sm-10
-        button.btn.btn-light(type="button") Log in
+  .container-fluid
+        .row
+          .col-sm
+            form
+              .form-group.row
+                label.col-sm-2.col-form-label(for="inputUsername") Username
+                .col-sm-10
+                  input#inputPassword.form-control(type="username" placeholder='Your Username')
+              .form-group.row
+                label.col-sm-2.col-form-label(for="inputPassword") Password
+                .col-sm-10
+                  input#inputPassword.form-control(type="password" placeholder='*******')
+              .form-group.row
+                .col-sm-10
+                  button.btn.btn-light(type="button") Log in

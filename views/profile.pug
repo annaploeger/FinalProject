@@ -1,10 +1,12 @@
 extends layout
 
 block content
-  
   br
-  h1= title
-  p Your personal user profile.
+  .container-fluid
+        .row
+          .col-sm
+              h1= title
+              p Your personal user profile.
   body
     .mx-auto(style="width: 100%;")
     nav.navbar.navbar-expand-lg.navbar-light.bg-light
@@ -29,10 +31,14 @@ block content
           li.nav-item
             a.nav-link(href="logout") Logout
     br
-    .card(style="width: 40rem;")
-      .card-header
-        | Your information
-      ul.list-group.list-group-flush
-        li.list-group-item Username
-        li.list-group-item Birthday
-        li.list-group-item Member since
+
+    .container-fluid
+        .row
+          .col-sm
+            .card(style="width: 40rem;")
+              .card-header
+                | Your information
+              ul.list-group.list-group-flush
+                li.list-group-item Username
+                li.list-group-item Birthday
+                li.list-group-item Member since

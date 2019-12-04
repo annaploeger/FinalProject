@@ -19,4 +19,8 @@ router.get("/profile", function(req, res, next) {
   res.render("profile", { title: "Your Profile." });
 });
 
+router.get("/logout", function(req, res, next) {
+  res.render("logout", { title: "Logout." });
+});
+
 module.exports = router;
