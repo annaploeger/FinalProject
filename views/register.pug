@@ -22,20 +22,26 @@ block content
     br
 
     .container-fluid
-      form
+      form(action="/api/users/create" method="POST" id="register_form")
         .form-group.row
           label.col-sm-2.col-form-label(for="inputUsername") Username
           .col-sm-10
-            input#inputPassword.form-control(type="username" placeholder='Create a username')
+            input#inputPassword.form-control(type="username" placeholder='Create a username' name='username')
         .form-group.row
           label.col-sm-2.col-form-label(for="inputEmail") E-Mail
           .col-sm-10
-            input#inputPassword.form-control(type="password" placeholder='@')
+            input#inputPassword.form-control(type="text" placeholder='@' name='email')
+        .form-group.row
+          label.col-sm-2.col-form-label(for="inputEmail") Birthday
+          .col-sm-10
+            input#inputPassword.form-control(type="date" placeholder='xx.xx.xxxx' name='birthday')
         .form-group.row
           label.col-sm-2.col-form-label(for="inputPassword") Password
           .col-sm-10
-            input#inputPassword.form-control(type="password" placeholder='*******')
+            input#inputPassword.form-control(type="password" placeholder='*******' name='password')
         .form-group.row
           label.col-sm-2.col-form-label(for="inputPassword") Repeat Password
           .col-sm-10
-            input#inputPassword.form-control(type="password" placeholder='*******')
+            input#inputPassword.form-control(type="password" placeholder='*******' name='repeatPassword')
+            br
+            button.btn.btn-light(type="button" id="register_btn") Submit

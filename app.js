@@ -3,10 +3,16 @@ var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
+var bodyParser = require("body-parser");
+//Models
+require("./model/user");
+//Configs
+var db = require("./config/connection");
 
 // Include external files (edit as required)
 var indexRouter = require("./routes/index");
 var postsRouter = require("./routes/posts");
+var usersRouter = require("./routes/users");
 
 // Start the app itself - default
 var app = express();
@@ -14,6 +20,8 @@ var app = express();
 // view engine setup  - default
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");
+app.use("/api/users", usersRouter);
+app.use(bodyParser.json());
 
 // Use logging and set settings - default
 app.use(logger("dev"));
