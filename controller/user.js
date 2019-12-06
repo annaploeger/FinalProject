@@ -4,19 +4,25 @@ var userService = require("../service/user");
  * Function to create the user in user collection.
  */
 exports.create = function(req, res, next) {
-  //debugger;
-  console.log("user data: ", req.body);
-  res.status(200).send("response");
   var body = new User(req.body);
   if (!body.username) {
-    res.status(400).send("User name is missing");
+    res.json({
+      status: false,
+      message: "username is missing."
+    });
     return;
   }
   userService.createUser(body, function(error, response) {
     if (response) {
-      res.status(201).send(response);
+      res.json({
+        status: true,
+        message: "User data created successfully."
+      });
     } else if (error) {
-      res.status(400).send(error);
+      res.status(400).json({
+        status: false,
+        message: error
+      });
     }
   });
 };

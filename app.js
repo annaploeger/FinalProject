@@ -7,21 +7,21 @@ var bodyParser = require("body-parser");
 //Models
 require("./model/user");
 //Configs
-var db = require("./config/connection");
-
-// Include external files (edit as required)
-var indexRouter = require("./routes/index");
-var postsRouter = require("./routes/posts");
-var usersRouter = require("./routes/users");
+require("./config/connection");
 
 // Start the app itself - default
 var app = express();
+// Configure bodyparser to handle post requests
+app.use(
+  bodyParser.urlencoded({
+    extended: true
+  })
+);
+app.use(bodyParser.json());
 
 // view engine setup  - default
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");
-app.use("/api/users", usersRouter);
-app.use(bodyParser.json());
 
 // Use logging and set settings - default
 app.use(logger("dev"));
@@ -30,9 +30,15 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
+// Include external files (edit as required)
+var indexRouter = require("./routes/index");
+var postsRouter = require("./routes/posts");
+var usersRouter = require("./routes/users");
+
 // Define routes (edit as required)
 app.use("/", indexRouter);
 app.use("/posts", postsRouter);
+app.use("/api/users", usersRouter);
 
 // Setting up a global var for data storage - this is extremely poor and hacky way, but works
 app.set("poststore", []);

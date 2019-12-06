@@ -12,18 +12,14 @@ router.get("/", function(req, res, next) {
 /**
  * To create the New user
  */
-router.post(
-  "/create",
-  sanitizeBody("*")
-    .trim()
-    .escape(),
-  user.create
-);
+router.post("/create", user.create);
 
 /**
  * TO get the single user by their username eg.email
  */
 router.get("/user/:username", user.find);
+
+//router.get("/authenticate/:username", user.authenticate)
 
 /**
  * To update user data(fields) by user ID

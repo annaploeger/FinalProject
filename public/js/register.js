@@ -13,19 +13,18 @@ $(function() {
       $.each(x, function(i, field) {
         result[field.name] = field.value;
       });
-      $("#results").append(JSON.stringify(result));
-      console.log(result);
+
+      $.ajax({
+        url: "/api/users/create",
+        type: "POST",
+        dataType: "application/json",
+        data: result,
+
+        success: function(data) {
+          //console.log(data);
+        }
+      });
+      //console.log(result);
     });
-  });
-
-  $.ajax({
-    url: "/api/users/create",
-    type: "POST",
-    dataType: "application/json",
-    data: $("#register_form").serializeArray(),
-
-    success: function(data) {
-      console.log(data["username"]["email"]["birthday"]["password"]);
-    }
   });
 });
