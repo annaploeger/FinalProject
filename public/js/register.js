@@ -1,5 +1,3 @@
-import { createUser } from "../../service/user";
-
 $(function() {
   /**$("#register_btn").on("click", function(e) {
     e.preventDefault();
@@ -19,7 +17,7 @@ $(function() {
       console.log(result);
     });
   });
-  /** 
+
   $.ajax({
     url: "/api/users/create",
     type: "POST",
@@ -30,5 +28,4 @@ $(function() {
       console.log(data["username"]["email"]["birthday"]["password"]);
     }
   });
-  */
 });
