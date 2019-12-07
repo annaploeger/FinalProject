@@ -6,15 +6,46 @@ var userService = require("../service/user");
 exports.create = function(req, res, next) {
   var body = new User(req.body);
   if (!body.username) {
-    res.json({
+    res.type("json").json({
       status: false,
       message: "username is missing."
     });
     return;
   }
+  if (!body.email) {
+    res.type("json").json({
+      status: false,
+      message: "email is missing."
+    });
+    return;
+  }
+
+  if (!body.birthday) {
+    res.type("json").json({
+      status: false,
+      message: "birthday is missing."
+    });
+    return;
+  }
+
+  if (!body.password) {
+    res.type("json").json({
+      status: false,
+      message: "password is missing."
+    });
+    return;
+  }
+
+  if (!body.repeatPassword) {
+    res.type("json").json({
+      status: false,
+      message: "repeat password is missing."
+    });
+  }
+
   userService.createUser(body, function(error, response) {
     if (response) {
-      res.json({
+      res.type("json").json({
         status: true,
         message: "User data created successfully."
       });

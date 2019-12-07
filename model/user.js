@@ -19,6 +19,10 @@ var schema = new mongoose.Schema({
   password: {
     type: String,
     required: true
+  },
+  repeatPassword: {
+    type: String,
+    required: true
   }
 });
 
