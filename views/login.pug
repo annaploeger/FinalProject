@@ -21,17 +21,18 @@ block content
 
     br
   .container-fluid
+        #login_msg.alert(role="alert")
         .row
           .col-sm
-            form
+            form(action="/api/users/authenticate" method="POST" id="login_form")
               .form-group.row
                 label.col-sm-2.col-form-label(for="inputUsername") Username
                 .col-sm-10
-                  input#inputPassword.form-control(type="username" placeholder='Your Username')
+                  input#inputPassword.form-control(type="username" placeholder='Your Username' name="username")
               .form-group.row
                 label.col-sm-2.col-form-label(for="inputPassword") Password
                 .col-sm-10
-                  input#inputPassword.form-control(type="password" placeholder='*******')
+                  input#inputPassword.form-control(type="password" placeholder='*******' name="password" )
               .form-group.row
                 .col-sm-10
-                  button.btn.btn-light(type="button") Log in
+                  button.btn.btn-light(type="button" id="login_btn") Log in

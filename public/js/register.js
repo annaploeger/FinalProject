@@ -18,21 +18,32 @@ $(document).ready(function() {
     //new function or call to check whether password equals or whatever
     //use name from pug file e.g. password and repeatpassword
 
+    //below ajax???
+    var username = JSON.stringify($("#username").serializeArray());
+    console.log(username);
+
+    //Problem "repeat password is missing"
+
     $.ajax({
       url: "/api/users/create",
       type: "POST",
       data: result,
 
       success: function(data) {
-        console.log("success");
-        //console.log(data);
-        //alert(data);
+        if (data.status) {
+          $("#register_msg").removeClass("alert-danger");
+          $("#register_msg").addClass("alert-success");
+          $("#register_form").trigger("reset");
+        } else {
+          $("#register_msg").removeClass("alert-success");
+          $("#register_msg").addClass("alert-danger");
+        }
+        $("#register_msg").html(data.message);
       },
       error: function(data) {
         console.log("error");
       }
     });
-    //console.log(result);
   });
 });
 //});

@@ -1,11 +1,9 @@
 // Required libraries
 var express = require("express");
 var router = express.Router();
+var post = require("../controller/posts");
 
-// Good validation documentation available at https://express-validator.github.io/docs/
-const { sanitizeBody } = require("express-validator");
-
-// Get posts listing
+// Get posts page
 router.get("/", function(req, res, next) {
   // Retreiving the posts from the global var
   var authors_and_posts = req.app.get("poststore");
@@ -14,27 +12,12 @@ router.get("/", function(req, res, next) {
   res.render("posts", { title: "Post List", post_list: authors_and_posts });
 });
 
+// Get posts listing
+router.get("/getAll", post.findAll);
+
 // Sanitation middleware
 // See https://express-validator.github.io/docs/sanitization-chain-api.html
 // And https://express-validator.github.io/docs/filter-api.html
-router.post(
-  "/create",
-  sanitizeBody("*")
-    .trim()
-    .escape(),
-  function(req, res, next) {
-    var local_content = req.body.content;
-    var local_author = req.body.author;
-    console.log("We got content: " + local_content);
-    console.log("from author: " + local_author);
-
-    req.app.get("poststore").push({
-      author: local_author,
-      content: local_content
-    });
-
-    res.redirect("/posts");
-  }
-);
+router.post("/create", post.create);
 
 module.exports = router;

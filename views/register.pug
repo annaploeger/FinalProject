@@ -22,6 +22,7 @@ block content
     br
 
     .container-fluid
+      #register_msg.alert(role="alert")
       form(action="/api/users/create" method="POST" id="register_form")
         .form-group.row
           label.col-sm-2.col-form-label(for="inputUsername") Username

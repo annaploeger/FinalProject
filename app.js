@@ -6,6 +6,7 @@ var logger = require("morgan");
 var bodyParser = require("body-parser");
 //Models
 require("./model/user");
+require("./model/posts");
 //Configs
 require("./config/connection");
 

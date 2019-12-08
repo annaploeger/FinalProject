@@ -33,18 +33,20 @@ block content
     br  
   
     .container-fluid
+        #posts_msg.alert(role="alert")
         .row
           .col-sm
-            form
+            form(id="posts_form")
               .form-group
-                label(for="exampleFormControlInput1") Headline
-                input#exampleFormControlInput1.form-control(type="text", placeholder="What is your main topic?")
+                label(for="headline") Headline
+                input#headline.form-control(type="text", placeholder="What is your main topic?" name="headline")
               .form-group
-                  label(for="exampleFormControlInput1") Keywords
-                  input#exampleFormControlInput1.form-control(type="text", placeholder="###")
+                  label(for="keywords") Keywords
+                  input#keywords.form-control(type="text", placeholder="###" name="keywords")
               .form-group
-                label(for="exampleFormControlTextarea1") Post
-                textarea#exampleFormControlTextarea1.form-control(rows="3")
+                label(for="posttext") Post
+                textarea#posttext.form-control(rows="3" name="textposts")
+                button.btn.btn-light(type="button" id="posts_btn") Submit
               
             br
         .row

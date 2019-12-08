@@ -20,6 +20,16 @@ exports.create = function(req, res, next) {
     return;
   }
 
+  const emailRegexp = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+
+  if (!emailRegexp.test(body.email)) {
+    res.type("json").json({
+      status: false,
+      message: "invalid email."
+    });
+    return;
+  }
+
   if (!body.birthday) {
     res.type("json").json({
       status: false,
@@ -36,11 +46,20 @@ exports.create = function(req, res, next) {
     return;
   }
 
-  if (!body.repeatPassword) {
+  if (!req.body.repeatPassword) {
     res.type("json").json({
       status: false,
       message: "repeat password is missing."
     });
+    return;
+  }
+
+  if (!(req.body.repeatPassword === body.password)) {
+    res.type("json").json({
+      status: false,
+      message: "confirm passwrd did not matched with password."
+    });
+    return;
   }
 
   userService.createUser(body, function(error, response) {
@@ -50,7 +69,7 @@ exports.create = function(req, res, next) {
         message: "User data created successfully."
       });
     } else if (error) {
-      res.status(400).json({
+      res.status(200).json({
         status: false,
         message: error
       });
@@ -151,6 +170,75 @@ exports.delete = function(req, res) {
           message: "No data found"
         });
       }
+    }
+  });
+};
+
+exports.authenticate = function(req, res) {
+  if (!req.body.username) {
+    res.type("json").json({
+      status: false,
+      message: "username is missing."
+    });
+    return;
+  }
+  var query = {
+    username: req.body.username
+  };
+  if (!query) {
+    res
+      .type("json")
+      .status(200)
+      .json({
+        status: false,
+        message: "Bad Request."
+      });
+    return;
+  }
+  userService.findUser(query, function(error, response) {
+    if (error) {
+      res
+        .type("json")
+        .status(200)
+        .json({
+          status: false,
+          message: error
+        });
+      return;
+    }
+    if (response) {
+      var user = response;
+      if (!(user.password === req.body.password)) {
+        res
+          .type("json")
+          .status(200)
+          .json({
+            status: false,
+            message: "Username or password is invalid."
+          });
+        return;
+      }
+      //include session code here
+      //req.session.username=req.body.username;
+      //req.session.email = user.email;
+      res
+        .type("json")
+        .status(200)
+        .json({
+          status: true,
+          message: "you are logged in",
+          data: { username: req.body.username, email: response.email }
+        });
+      return;
+    }
+    if (!response) {
+      res
+        .type("json")
+        .status(200)
+        .json({
+          status: false,
+          message: "Username is invalid"
+        });
     }
   });
 };

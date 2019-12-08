@@ -9,18 +9,13 @@ var schema = new mongoose.Schema({
   email: {
     type: String,
     required: true,
-    default: ""
+    unique: true
   },
   birthday: {
     type: Date,
-    required: true,
-    default: ""
-  },
-  password: {
-    type: String,
     required: true
   },
-  repeatPassword: {
+  password: {
     type: String,
     required: true
   }

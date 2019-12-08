@@ -19,7 +19,7 @@ router.post("/create", user.create);
  */
 router.get("/user/:username", user.find);
 
-//router.get("/authenticate/:username", user.authenticate)
+router.post("/authenticate", user.authenticate);
 
 /**
  * To update user data(fields) by user ID
