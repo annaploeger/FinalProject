@@ -1,6 +1,5 @@
 $(document).ready(function() {
   $("#posts_btn").click(function() {
-    //console.log("anything");
     var x = $("#posts_form").serializeArray();
     var result = {};
 

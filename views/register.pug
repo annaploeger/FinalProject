@@ -8,19 +8,7 @@ block content
             h2 Sign Up.
             p Please sign up, if you don't have an account.
   body
-  .mx-auto(style="width: 100%;")
-    nav.navbar.navbar-expand-lg.navbar-light.bg-light
-      button.navbar-toggler(type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation")
-        span.navbar-toggler-icon
-      #navbarNavAltMarkup.collapse.navbar-collapse
-        .navbar-nav
-          a.nav-item.nav-link.active(href="register")
-            | Register 
-            span.sr-only (current)
-          a.nav-item.nav-link(href="login") Login
-          a.nav-item.nav-link(href="logout") Logout
     br
-
     .container-fluid
       #register_msg.alert(role="alert")
       form(action="/api/users/create" method="POST" id="register_form")

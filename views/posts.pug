@@ -6,32 +6,9 @@ block content
         .row
           .col-sm
             h1 Your posts.
-            p Create your own post or have a look at your recent ones.
+            p Create your own post.
   body
-    .mx-auto(style="width: 100%;")
-    nav.navbar.navbar-expand-lg.navbar-light.bg-light
-      a.navbar-brand(href="#") Hello #username
-      button.navbar-toggler(type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation")
-        span.navbar-toggler-icon
-      #navbarText.collapse.navbar-collapse
-        ul.navbar-nav.mr-auto
-          li.nav-item
-            a.nav-link(href="/") Feed
-          li.nav-item
-            a.nav-link.active(href="posts") Posts
-              span.sr-only (current)
-          li.nav-item
-            a.nav-link(href="profile") Profile
-
-        ul.nav.justify-content-end
-          li.nav-item
-            a.nav-link(href="login") Login
-          li.nav-item
-            a.nav-link(href="register") Register
-          li.nav-item
-            a.nav-link(href="logout") Logout
     br  
-  
     .container-fluid
         #posts_msg.alert(role="alert")
         .row
@@ -46,14 +23,6 @@ block content
               .form-group
                 label(for="posttext") Post
                 textarea#posttext.form-control(rows="3" name="textposts")
-                button.btn.btn-light(type="button" id="posts_btn") Submit
-              
+                br
+                button.btn.btn-light(type="button" id="posts_btn") Submit 
             br
-        .row
-          .col-sm
-           h2 Your recent posts.
-            ul
-            each post in post_list
-              li #{post.author}: #{post.content}
-            else
-              h6 There are no posts yet.

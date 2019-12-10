@@ -8,6 +8,31 @@ html(lang='en')
     meta(name='author', content='')
     link(href='/css/bootstrap.min.css', rel='stylesheet')
     link(rel='shortcut icon', href='/ico/favicon.png')
+
+    .mx-auto(style="width: 100%;")
+    nav.navbar.navbar-expand-lg.navbar-light.bg-light
+      h4#navbarUsername.navbar-brand Hello you!
+      button.navbar-toggler(type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation")
+        span.navbar-toggler-icon
+      #navbarText.collapse.navbar-collapse
+        ul.navbar-nav.mr-auto
+          li.nav-item.active
+            a.nav-link(href="/")
+              | Feed
+              span.sr-only (current)
+          li#postMenu.nav-item
+            a.nav-link(href="posts") Posts
+          li#profileMenu.nav-item
+            a.nav-link(href="profile") Profile
+
+        ul.nav.justify-content-end
+          li#loginMenu.nav-item
+            a.nav-link(href="login") Login
+          li#registerMenu.nav-item
+            a.nav-link(href="register") Register
+          li#logoutMenu.nav-item
+            a#logoutbtn.nav-link(href="#") Logout
+
   body
     block content
   include partials/scripts

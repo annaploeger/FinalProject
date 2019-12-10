@@ -81,9 +81,8 @@ exports.create = function(req, res, next) {
  * Function to find user from user collection.
  */
 exports.find = function(req, res) {
-  var params = req.params || {};
   var query = {
-    username: params.username
+    username: req.session.loggedInUser
   };
   if (!query) {
     res.status(400).send("Bad Request");
@@ -95,7 +94,10 @@ exports.find = function(req, res) {
       return;
     }
     if (response) {
-      res.status(200).send(response);
+      res.type("json").json({
+        status: true
+        // message: {username:response.username, }
+      });
       return;
     }
     if (!response) {
@@ -219,8 +221,10 @@ exports.authenticate = function(req, res) {
         return;
       }
       //include session code here
-      //req.session.username=req.body.username;
-      //req.session.email = user.email;
+      req.session.loggedInUser = req.body.username;
+      req.session.email = user.email;
+
+      console.log("from login: ", req.session);
       res
         .type("json")
         .status(200)
@@ -241,6 +245,17 @@ exports.authenticate = function(req, res) {
         });
     }
   });
+};
+
+exports.logout = function(req, res) {
+  req.session.destroy();
+  res
+    .type("json")
+    .status(200)
+    .json({
+      status: true,
+      message: "logout success"
+    });
 };
 //TODO:
 // Model.find()

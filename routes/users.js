@@ -2,23 +2,23 @@ var express = require("express");
 var router = express.Router();
 var user = require("../controller/user");
 
-// Good validation documentation available at https://express-validator.github.io/docs/
-const { sanitizeBody } = require("express-validator");
-
 router.get("/", function(req, res, next) {
   res.send("respond with a resource");
 });
 
 /**
- * To create the New user
+ * To create the new user
  */
 router.post("/create", user.create);
 
 /**
  * TO get the single user by their username eg.email
  */
-router.get("/user/:username", user.find);
+router.get("/get", user.find);
 
+/**
+ * TO check whether user is registered to login
+ */
 router.post("/authenticate", user.authenticate);
 
 /**
@@ -34,6 +34,6 @@ router.put("/update", user.update);
 /**
  * To delete the user by condition
  */
-router.delete("/delete", user.delete);
+router.get("/logout", user.logout);
 
 module.exports = router;

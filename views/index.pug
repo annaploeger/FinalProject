@@ -9,46 +9,7 @@ block content
             p Welcome to #{title}
 
   body
-  .mx-auto(style="width: 100%;")
-    nav.navbar.navbar-expand-lg.navbar-light.bg-light
-      a.navbar-brand(href="#") Hello #username
-      button.navbar-toggler(type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation")
-        span.navbar-toggler-icon
-      #navbarText.collapse.navbar-collapse
-        ul.navbar-nav.mr-auto
-          li.nav-item.active
-            a.nav-link(href="/")
-              | Feed
-              span.sr-only (current)
-          li.nav-item
-            a.nav-link(href="posts") Posts
-          li.nav-item
-            a.nav-link(href="profile") Profile
-
-        ul.nav.justify-content-end
-          li.nav-item
-            a.nav-link(href="login") Login
-          li.nav-item
-            a.nav-link(href="register") Register
-          li.nav-item
-            a.nav-link(href="logout") Logout
-
-
     br
     #postContainer.container-fluid
-        .row
-          .col-sm
-            .card.text-center
-              .card.text-white.bg-secondary.mb-3(style="max-width: 100%;")
-                #cardHeader.card-header Mibo. What´s next.
-                #cardbody.card-body
-                  h5#cardtitle.card-title Headline
-                  p#cardtext.card-text
-                    | Text
-                  p#cardKeyword.card-text
-                      | Keywords
-                  p#cardAuthor.card-text
-                      | Author
-            br
-         
+      
 
