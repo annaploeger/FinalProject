@@ -41,7 +41,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 app.use((req, res, next) => {
-  console.log("----- app js -----: " + JSON.stringify(req.session));
   // Check if we've already initialised a session
   if (!req.session.initialised) {
     // Initialise our variables on the session object

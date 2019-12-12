@@ -83,9 +83,9 @@ exports.create = function(req, res, next) {
  */
 exports.find = function(req, res) {
   var query = {
-    username: req.session.username,
-    birthday: req.session.birthday
+    username: req.session.loggedInUser
   };
+  console.log("User find: " + JSON.stringify(query));
   if (!query) {
     res.status(400).send("Bad Request");
     return;
@@ -103,7 +103,11 @@ exports.find = function(req, res) {
       return;
     }
     if (!response) {
-      res.status(204).send("No Data Found");
+      res.type("json").json({
+        status: false,
+        message: "no user logged in yet"
+      });
+      return;
     }
   });
 };
