@@ -5,7 +5,7 @@ var post = require("../controller/posts");
 
 // Get posts page
 router.get("/", function(req, res, next) {
-  console.log("------ session -----: " + req.session.email);
+  //console.log("------ session -----: " + req.session.email);
   if (!req.session.email) {
     res.redirect("/");
   } else {

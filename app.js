@@ -14,7 +14,10 @@ require("./config/connection");
 
 // Start the app itself - default
 var app = express();
+
+//Posts and profile pages
 var urlPaths = ["posts", "profile"];
+
 //Session
 app.use(session({ secret: "Shh!", resave: true, saveUninitialized: true }));
 
@@ -38,10 +41,10 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 app.use((req, res, next) => {
-  console.log("----- appp js -----: " + JSON.stringify(req.session));
+  console.log("----- app js -----: " + JSON.stringify(req.session));
   // Check if we've already initialised a session
   if (!req.session.initialised) {
-    // Initialise our variables on the session object (that's persisted across requests by the same user
+    // Initialise our variables on the session object
     req.session.initialised = true;
     req.session.x = 1;
     req.session.score = 0;
@@ -50,12 +53,12 @@ app.use((req, res, next) => {
   next();
 });
 
-// Include external files (edit as required)
+// Include external files
 var indexRouter = require("./routes/index");
 var postsRouter = require("./routes/posts");
 var usersRouter = require("./routes/users");
 
-// Define routes (edit as required)
+// Define routes
 app.use("/", indexRouter);
 app.use("/posts", postsRouter);
 app.use("/api/users", usersRouter);

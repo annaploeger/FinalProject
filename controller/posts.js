@@ -1,10 +1,7 @@
 var postsService = require("../service/posts");
-//make js file and inclue here to check session
-//checkSession(req)
-//if username is not empty (return true or false)
 
 /**
- * Function to create the post in posts collection.
+ * Function to create the post in posts collection when user is logged in.
  */
 exports.create = function(req, res, next) {
   if (req.session.email) {
@@ -51,12 +48,15 @@ exports.create = function(req, res, next) {
   } else {
     res.type("json").json({
       status: false,
-      message: "you are not logged in."
+      message: "You are not logged in."
     });
     return;
   }
 };
 
+/**
+ * Function to find the post in posts collection to show them in the feed.
+ */
 exports.findAll = function(req, res, next) {
   postsService.findAll({}, function(err, posts) {
     if (posts) {
@@ -72,10 +72,6 @@ exports.findAll = function(req, res, next) {
     }
   });
 };
-
-//TODO:
-// Model.find()
-// Model.findById()
 
 class Post {
   constructor(postData) {

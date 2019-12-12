@@ -1,3 +1,6 @@
+/**
+ * Postings
+ */
 $(document).ready(function() {
   $("#posts_btn").click(function() {
     var x = $("#posts_form").serializeArray();

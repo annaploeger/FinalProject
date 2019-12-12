@@ -20,6 +20,7 @@ exports.create = function(req, res, next) {
     return;
   }
 
+  //check whether email adddress is valid
   const emailRegexp = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
 
   if (!emailRegexp.test(body.email)) {
@@ -82,7 +83,8 @@ exports.create = function(req, res, next) {
  */
 exports.find = function(req, res) {
   var query = {
-    username: req.session.loggedInUser
+    username: req.session.username,
+    birthday: req.session.birthday
   };
   if (!query) {
     res.status(400).send("Bad Request");
@@ -95,8 +97,8 @@ exports.find = function(req, res) {
     }
     if (response) {
       res.type("json").json({
-        status: true
-        // message: {username:response.username, }
+        status: true,
+        message: { username: response.username, birthday: response.birthday }
       });
       return;
     }
@@ -127,7 +129,7 @@ exports.updateById = function(req, res) {
 };
 
 /**
- * Function to uodate the user data by filter condition.
+ * Function to update the user data by filter condition.
  */
 exports.update = function(req, res) {
   var body = req.body;
@@ -197,6 +199,7 @@ exports.authenticate = function(req, res) {
       });
     return;
   }
+
   userService.findUser(query, function(error, response) {
     if (error) {
       res
@@ -220,10 +223,12 @@ exports.authenticate = function(req, res) {
           });
         return;
       }
-      //include session code here
+
+      //included session code
       req.session.loggedInUser = req.body.username;
       req.session.email = user.email;
 
+      //login session
       console.log("from login: ", req.session);
       res
         .type("json")
@@ -247,6 +252,7 @@ exports.authenticate = function(req, res) {
   });
 };
 
+//logout session
 exports.logout = function(req, res) {
   req.session.destroy();
   res
@@ -257,9 +263,6 @@ exports.logout = function(req, res) {
       message: "logout success"
     });
 };
-//TODO:
-// Model.find()
-// Model.findById()
 
 class User {
   constructor(userData) {

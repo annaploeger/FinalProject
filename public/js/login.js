@@ -1,12 +1,21 @@
+/**
+ * Login function
+ */
 $(document).ready(function() {
   if (getItemFromSession("username")) {
     $("#loginMenu").addClass("d-none");
     $("#navbarUsername").html("Hello " + getItemFromSession("username"));
     $("#logoutMenu").removeClass("d-none");
+    $("#postMenu").removeClass("d-none");
+    $("#profileMenu").removeClass("d-none");
+    $("#registerMenu").addClass("d-none");
   } else {
     $("#loginMenu").removeClass("d-none");
     $("#navbarUsername").html("Hello You!");
     $("#logoutMenu").addClass("d-none");
+    $("#postMenu").addClass("d-none");
+    $("#profileMenu").addClass("d-none");
+    $("#registerMenu").removeClass("d-none");
   }
   $("#login_btn").click(function() {
     var x = $("#login_form").serializeArray();
@@ -43,6 +52,7 @@ $(document).ready(function() {
     });
   });
 
+  //Logout clear session and redirect
   $("#logoutbtn").click(function(e) {
     e.preventDefault();
     $.get("/api/users/logout", function(data) {
@@ -55,15 +65,18 @@ $(document).ready(function() {
   });
 });
 
+// create session for user
 function createSession(user) {
   window.sessionStorage.setItem("username", user.username);
   window.sessionStorage.setItem("email", user.email);
 }
 
+// clear session for logout
 function clearSession() {
   window.sessionStorage.clear();
 }
 
+// save user information in session storage and get them
 function getItemFromSession(key) {
   return window.sessionStorage.getItem(key);
 }

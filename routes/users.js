@@ -7,7 +7,7 @@ router.get("/", function(req, res, next) {
 });
 
 /**
- * To create the new user
+ * TO create the new user
  */
 router.post("/create", user.create);
 
@@ -22,17 +22,17 @@ router.get("/get", user.find);
 router.post("/authenticate", user.authenticate);
 
 /**
- * To update user data(fields) by user ID
+ * TO get user data for profile
  */
-router.put("/updatebyid", user.updateById);
+router.get("/getUser", user.find);
 
 /**
- * To update the user data by filter condition
+ * TO update the user data by filter condition
  */
 router.put("/update", user.update);
 
 /**
- * To delete the user by condition
+ * TO logout the user
  */
 router.get("/logout", user.logout);
 
